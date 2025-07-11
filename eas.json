@@ -1,0 +1,30 @@
+{
+  "cli": {
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "release": {
+      "android": {
+        "buildType": "apk",
+        "credentialsSource": "remote",
+        "distribution": "store"
+      },
+      "ios": {
+        "credentialsSource": "remote",
+        "distribution": "store"
+      }
+    },
+    "preview": {
+      "android": {
+        "buildType": "apk",
+        "credentialsSource": "remote",
+        "distribution": "internal"
+      },
+      "ios": {
+        "credentialsSource": "remote",
+        "distribution": "internal",
+        "simulator": true
+      }
+    }
+  }
+}
