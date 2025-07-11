@@ -14,12 +14,8 @@ export default function ListItem({ item, index, onClose }) {
   return (
     <View style={whatStatus(item.status)}>
       <View style={s.taskItemTextBox}>
-        <Text style={s.listItemText1}>{index + 1 + "."}</Text>
-        <Text
-          style={s.listItemText}
-        >
-          {item.task}
-        </Text>
+        <Text style={s.listItemText1}>{index + 1}</Text>
+        <Text style={s.listItemText}>{item.task}</Text>
       </View>
       <TouchableOpacity style={s.closeBtnBox} onPress={() => onClose(item.id)}>
         <Image
@@ -34,33 +30,39 @@ export default function ListItem({ item, index, onClose }) {
 const s = StyleSheet.create({
   taskItem1: {
     padding: 10,
-    backgroundColor: "#00ff4843",
-    borderWidth: 2,
+    backgroundColor: "#0c562178",
+    borderWidth: 1,
     borderColor: "#00ff48",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     gap: 10,
+    marginBottom: 2,
+    marginTop: 4,
   },
   taskItem2: {
     padding: 10,
-    backgroundColor: "#fbff0056",
-    borderWidth: 2,
+    backgroundColor: "#90921756",
+    borderWidth: 1,
     borderColor: "#fbff00",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     gap: 10,
+    marginBottom: 2,
+    marginTop: 4,
   },
   taskItem3: {
     padding: 10,
-    backgroundColor: "#e0000043",
-    borderWidth: 2,
+    backgroundColor: "#6d010143",
+    borderWidth: 1,
     borderColor: "#e00000",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     gap: 10,
+    marginBottom: 2,
+    marginTop: 4,
   },
   taskItemTextBox: {
     flexDirection: "row",
@@ -71,16 +73,29 @@ const s = StyleSheet.create({
     fontSize: 18,
     fontWeight: "600",
     color: "#fff",
-    maxWidth: 300,
+    maxWidth: 290,
     borderLeftColor: "#ffffff",
-    borderLeftWidth: 2,
-    paddingLeft: 5,
+    borderLeftWidth: 1,
+    borderRightColor: "#ffffff",
+    borderRightWidth: 1,
+    paddingLeft: 8,
+    backgroundColor: "#000",
+    borderRadius: 5,
+    paddingRight: 5,
+    paddingBottom: 2,
   },
   listItemText1: {
     fontSize: 18,
     fontWeight: "600",
     color: "#fff",
-    maxWidth: 300,
+    maxWidth: 290,
+    backgroundColor: "#000",
+
+    borderRadius: 5,
+    paddingLeft: 5,
+    paddingRight: 5,
+    borderColor: "#fff",
+    borderWidth: 2,
   },
   closeBtn: {
     width: 30,

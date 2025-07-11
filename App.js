@@ -1,4 +1,4 @@
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import { Alert, ImageBackground, StyleSheet, Text, View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Header from "./components/header.jsx";
 import { useState, useEffect } from "react";
@@ -67,6 +67,21 @@ export default function App() {
     setMenuStatus((prev) => !prev);
   };
 
+  const handleButtonPress = (idx) => {
+    Alert.alert("Delete Task", "Are you sure you want to delete this task?", [
+      {
+        text: "Cancel",
+        onPress: () => {},
+        style: "cancel",
+      },
+      {
+        text: "Delete",
+        onPress: () => handleCloseMenu(idx),
+        style: "destructive",
+      },
+    ]);
+  };
+
   const handleCloseMenu = (idx) => {
     setList((list) => {
       return list.filter((item) => item.id !== idx);
@@ -81,7 +96,7 @@ export default function App() {
     <SafeAreaProvider>
       <ImageBackground source={require("./assets/bg.jpg")} style={s.container}>
         <SafeAreaView style={{ flex: 1 }}>
-          <Header onOpenMenu={handleOpenMenu} />
+          <Header menuStatus={menuStatus} onOpenMenu={handleOpenMenu} />
           {menuStatus && (
             <FormAdd
               onChange={handleChange}
@@ -95,7 +110,7 @@ export default function App() {
             <Text
               onPress={() => handleSortTasks("all")}
               style={
-                status !== "all" ? s.tasksTypeItem : s.tasksTypeItemSelected
+                status !== "all" ? s.tasksTypeItem : s.tasksTypeItemSelected0
               }
             >
               All
@@ -103,7 +118,7 @@ export default function App() {
             <Text
               onPress={() => handleSortTasks("low")}
               style={
-                status !== "low" ? s.tasksTypeItem : s.tasksTypeItemSelected
+                status !== "low" ? s.tasksTypeItem : s.tasksTypeItemSelected1
               }
             >
               Low
@@ -111,7 +126,7 @@ export default function App() {
             <Text
               onPress={() => handleSortTasks("middle")}
               style={
-                status !== "middle" ? s.tasksTypeItem : s.tasksTypeItemSelected
+                status !== "middle" ? s.tasksTypeItem : s.tasksTypeItemSelected2
               }
             >
               Middle
@@ -119,13 +134,13 @@ export default function App() {
             <Text
               onPress={() => handleSortTasks("high")}
               style={
-                status !== "high" ? s.tasksTypeItem : s.tasksTypeItemSelected
+                status !== "high" ? s.tasksTypeItem : s.tasksTypeItemSelected3
               }
             >
               High
             </Text>
           </View>
-          <ToDoList list={list} onClose={handleCloseMenu} status={status} />
+          <ToDoList list={list} onClose={handleButtonPress} status={status} />
         </SafeAreaView>
       </ImageBackground>
     </SafeAreaProvider>
@@ -135,22 +150,38 @@ export default function App() {
 const s = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: "#00093cff",
   },
   tasksTypeBox: {
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 10,
     backgroundColor: "#10007a8a",
+    borderBottomColor: "#fff",
+    borderBottomWidth: 1,
   },
   tasksTypeItem: {
-    color: "#fff",
+    color: "#747474",
     fontSize: 20,
-    fontWeight: "600",
+    fontWeight: "900",
   },
-  tasksTypeItemSelected: {
+  tasksTypeItemSelected0: {
+    color: "#ffffff",
+    fontSize: 20,
+    fontWeight: "900",
+  },
+  tasksTypeItemSelected1: {
     color: "#0dc900",
     fontSize: 20,
-    fontWeight: "600",
+    fontWeight: "900",
+  },
+  tasksTypeItemSelected2: {
+    color: "#b8dc00",
+    fontSize: 20,
+    fontWeight: "900",
+  },
+  tasksTypeItemSelected3: {
+    color: "#ff5218",
+    fontSize: 20,
+    fontWeight: "900",
   },
 });
